@@ -13,3 +13,12 @@
     <% end %>
   </ul>
 <% end %>
+
+<% if user_signed_in? %>
+  <h5>Chatrooms esh</h5>
+  <ul>
+    <% current_user.chatrooms.each do |chatroom| %>
+      <li><%= link_to chatroom.name, chatroom, data: {behavior: "chatroom-link", chatroom_id: chatroom.id} %></li>
+    <% end %>
+  </ul>
+<% end %>
