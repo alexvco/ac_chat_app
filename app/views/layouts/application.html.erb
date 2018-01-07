@@ -9,6 +9,24 @@
   </head>
 
   <body>
-    <%= yield %>
+
+  <%= render 'layouts/nav' %>
+
+    <div class="fluid-container" style="margin-top: 70px">
+      <div class="row">
+        <div class="col-sm-2" style="position: fixed; top: 70px; left: 0;">
+          <%= render 'layouts/sidebar' %>
+        </div>
+        <div class="col-sm-10 col-sm-offset-2">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+
   </body>
 </html>
+
+
+
+
+
