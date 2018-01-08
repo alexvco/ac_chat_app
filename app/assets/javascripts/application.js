@@ -18,11 +18,27 @@
 //= require_tree .
 
 
+function handleVisibilityChange() {
+  var $strike = $(".strike");
+  if ($strike.length > 0) {
+    var chatroom_id = $("[data-behavior='messages']").data("chatroom-id");
+    App.last_read.update(chatroom_id);
+    $strike.remove(); //removes from the DOM
+  }
+}
+
+
 $(document).on("turbolinks:load", function() {
+
+  $(document).on("click", function(){
+    handleVisibilityChange();
+  });
 
   if (Notification.permission == 'default') {
     Notification.requestPermission();
   }
+
+
 
   $('#new_message').on('keypress', function(e) {
     console.log(e.keyCode);
@@ -35,8 +51,8 @@ $(document).on("turbolinks:load", function() {
 
   $('#new_message').on("submit", function(e){
     e.preventDefault();
-    var chatroom_id = $("[data-behavior='messages']").data("chatroom-id")
-    var body        = $("#message_body")
+    var chatroom_id = $("[data-behavior='messages']").data("chatroom-id");
+    var body        = $("#message_body");
 
     App.chatrooms.send_message(chatroom_id, body.val()); // this is basically calling send_message in chatrooms.coffee which is then calling send_message in chatrooms_channels.rb, so we are passing data from the front end to the server and performing MessageRelayJob.perform_later(message) in the server side, which is then broadcasting that to the appropriate channel/chatroom and rendering the message.
     body.val(""); // reset the body value when submitted
