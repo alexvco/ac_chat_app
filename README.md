@@ -27,3 +27,13 @@ We need to create app/views/messages/create.js.erb
 
 
 
+Later on
+
+We're going to take and convert the AJAX form for submitting a new message in a chat room, 
+and we're going to convert that using ActionCable, and the reason why we're going to do that is 
+because we've already got this open connection, and it has to be open, otherwise our chat is kind of useless, 
+so we might as well take advantage of that and send our messages across through ActionCable instead of an AJAX request, 
+so we're going to refactor what we've built and convert it to using ActionCable. 
+
+
+
