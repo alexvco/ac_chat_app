@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :chatrooms do
     resource :chatroomusers, only: [:create, :destroy]
+    resources :messages
   end
 
 # if you do resources this is the routes you get 

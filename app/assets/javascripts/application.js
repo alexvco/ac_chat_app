@@ -16,3 +16,15 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
+
+
+$(document).on("turbolinks:load", function() {
+  $('#new_message').on('keypress', function(e) {
+    console.log(e.keyCode);
+    if (e && e.keyCode == 13) {
+      // alert(e.currentTarget); // this will point to the form itself, i think in this case currentTarget is the same as $(this)
+      e.preventDefault();
+      $(this).submit();
+    }
+  })
+});
