@@ -19,6 +19,11 @@
 
 
 $(document).on("turbolinks:load", function() {
+
+  if (Notification.permission == 'default') {
+    Notification.requestPermission();
+  }
+
   $('#new_message').on('keypress', function(e) {
     console.log(e.keyCode);
     if (e && e.keyCode == 13) {
