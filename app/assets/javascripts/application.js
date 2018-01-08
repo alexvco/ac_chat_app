@@ -27,4 +27,14 @@ $(document).on("turbolinks:load", function() {
       $(this).submit();
     }
   })
+
+  $('#new_message').on("submit", function(e){
+    e.preventDefault();
+    var chatroom_id = $("[data-behavior='messages']").data("chatroom-id")
+    var body        = $("#message_body")
+
+    App.chatrooms.send_message(chatroom_id, body.val()); // this is basically calling send_message in chatrooms.coffee which is then calling send_message in chatrooms_channels.rb, so we are passing data from the front end to the server and performing MessageRelayJob.perform_later(message) in the server side, which is then broadcasting that to the appropriate channel/chatroom and rendering the message.
+    body.val(""); // reset the body value when submitted
+  })
+
 });

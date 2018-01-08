@@ -21,4 +21,19 @@ App.chatrooms = App.cable.subscriptions.create "ChatroomsChannel",
     else
       $("[data-behavior='chatroom-link'][data-chatroom-id='#{data.chatroom_id}']").css("font-weight", "bold")
     # So basically what this does is that it makes the other chatrooms bold when they receive a message, while you are in a chatroom
- 
+  
+  send_message: (chatroom_id, message) ->
+    @perform "send_message", {chatroom_id: chatroom_id, body: message}
+
+    # We'll send over this JSON object, and so the server side will receive that in
+    # app/channels/chatrooms_channel.rb
+
+    # So this @perform is calling send_message and we'll have some data that we receive which will be this JSON object here. 
+    # We'll have this set up so that we can perform that send message function server side, and we can just pass that data over, 
+    # and ActionCable is going to know what to do, it will convert it to the ruby function. 
+    # It will call that function, it will execute that server side and do whatever you want. 
+    # That means all we have to do now is:
+
+    # application.js
+
+      #  App.chatrooms.send_message(chatroom_id, body.val())

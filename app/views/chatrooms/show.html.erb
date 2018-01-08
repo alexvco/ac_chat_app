@@ -9,6 +9,12 @@
   <% end %>
 </div>
 
-<%= form_for [@chatroom, Message.new], remote: true do |f| %>
+
+<!-- This was the old way using ajax form submission, now we use action cable fully -->
+<%#= form_for [@chatroom, Message.new], remote: true do |f| %>
+  <%#= f.text_area :body, rows: 2, class: "form-control", autofocus: true %>
+<%# end %>
+
+<%= form_for [@chatroom, Message.new] do |f| %>
   <%= f.text_area :body, rows: 2, class: "form-control", autofocus: true %>
 <% end %>
