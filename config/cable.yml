@@ -7,4 +7,9 @@ test:
 
 production:
   adapter: redis
-  url: ENV["REDISTOGO_URL"]
+  url: redis://redistogo:5ffb194194f683278d376a4e61e23a15@soldierfish.redistogo.com:10177
+  host: soldierfish.redistogo.com
+  port: 49382
+  password: 5ffb194194f683278d376a4e61e23a15
+  inline: true
+  timeout: 1
