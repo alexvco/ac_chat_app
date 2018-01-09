@@ -1,4 +1,4 @@
-<% if false && user_signed_in? %>
+<% if user_signed_in? %>
   <h5>Chatrooms</h5>
   <ul>
     <% current_user.chatrooms.public_channels.each do |chatroom| %>
@@ -14,7 +14,7 @@
   </ul>
 <% end %>
 
-<% if user_signed_in? %>
+<% if false && user_signed_in? %>
   <h5>Chatrooms esh</h5>
   <ul>
     <% current_user.chatrooms.each do |chatroom| %>

@@ -23,5 +23,8 @@ Rails.application.routes.draw do
   #                          POST     /chatrooms/:chatroom_id/chatroomusers(.:format)       chatroomusers#create
 
   devise_for :users
+
+  resources :direct_messages
+
   root 'chatrooms#index'
 end
